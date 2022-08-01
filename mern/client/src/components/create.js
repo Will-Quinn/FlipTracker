@@ -24,26 +24,21 @@ export default function Create() {
     e.preventDefault();
 
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newPerson = { ...form };
+    const newFlip = { ...form };
 
     await fetch("http://localhost:5000/record/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPerson),
+      body: JSON.stringify(newFlip),
     })
     .catch(error => {
       window.alert(error);
       return;
     });
 
-    setForm({    ItemName: "",
-    BuyPrice: "",
-    Quantity: "",
-    SellPrice: "",
-    Tax: "",
-    Profit: "",});
+    setForm({ItemName: "", BuyPrice: "", Quantity: "", SellPrice: "", Tax: "", Profit: ""});
     navigate("/");
   }
 
@@ -53,62 +48,62 @@ export default function Create() {
       <h3>Enter your flip</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Item Name</label>
+          <label htmlFor="ItemName">Item Name</label>
           <input
             type="text"
             className="form-control"
-            id="name"
-            value={form.name}
+            id="ItemName"
+            value={form.ItemName}
             onChange={(e) => updateForm({ ItemName: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Buy Price</label>
+          <label htmlFor="BuyPrice">Buy Price</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="position"
-            value={form.position}
+            id="BuyPrice"
+            value={form.BuyPrice}
             onChange={(e) => updateForm({ BuyPrice: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Quantity</label>
+          <label htmlFor="Quantity">Quantity</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="position"
-            value={form.position}
+            id="Quantity"
+            value={form.Quantity}
             onChange={(e) => updateForm({ Quantity: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Sell Price</label>
+          <label htmlFor="SellPrice">Sell Price</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="position"
-            value={form.position}
+            id="SellPrice"
+            value={form.SellPrice}
             onChange={(e) => updateForm({ sellPrice: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Tax</label>
+          <label htmlFor="Tax">Tax</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="position"
-            value={form.position}
+            id="Tax"
+            value={form.Tax}
             onChange={(e) => updateForm({ Tax: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Profit</label>
+          <label htmlFor="Profit">Profit</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="position"
-            value={form.position}
+            id="Profit"
+            value={form.Profit}
             onChange={(e) => updateForm({ Profit: e.target.value })}
           />
         </div>

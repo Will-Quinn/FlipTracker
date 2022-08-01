@@ -14,7 +14,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+  let db_connect = dbo.getDb("fliptracker");
   db_connect
     .collection("records")
     .find({})
@@ -40,9 +40,12 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
+      ItemName: req.body.ItemName,
+      BuyPrice: req.body.BuyPrice,
+      Quantity: req.body.Quantity,
+      SellPrice: req.body.SellPrice,
+      Tax: req.body.Tax,
+      Profit: req.body.Profit,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -56,9 +59,12 @@ recordRoutes.route("/update/:id").post(function (req, response) {
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-      name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
+      ItemName: req.body.ItemName,
+      BuyPrice: req.body.BuyPrice,
+      Quantity: req.body.Quantity,
+      SellPrice: req.body.SellPrice,
+      Tax: req.body.Tax,
+      Profit: req.body.Profit,
     },
   };
   db_connect
