@@ -8,6 +8,7 @@ export default function Create() {
     Quantity: "",
     SellPrice: "",
     Tax: "",
+    IncleTax: "",
     Profit: "",
   });
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ export default function Create() {
     });
   }
 
+
+  
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -38,14 +41,14 @@ export default function Create() {
       return;
     });
 
-    setForm({ItemName: "", BuyPrice: "", Quantity: "", SellPrice: "", Tax: "", Profit: ""});
+    setForm({ItemName: "", BuyPrice: "", Quantity: "", SellPrice: "", Tax: "",IncleTax: "", Profit: ""});
     navigate("/");
   }
 
   // This following section will display the form that takes the input from the user.
   return (
-    <div>
-      <h3>Enter your flip</h3>
+    <div style={{"width" : "35%", "margin": "auto"}}>
+      <h3 style={{"margin-left": "20%"}}>Enter your flip</h3><br></br>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="ItemName">Item Name</label>
@@ -84,30 +87,21 @@ export default function Create() {
             className="form-control"
             id="SellPrice"
             value={form.SellPrice}
-            onChange={(e) => updateForm({ sellPrice: e.target.value })}
+            onChange={(e) => updateForm({ SellPrice: e.target.value })}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="Tax">Tax</label>
-          <input
-            type="number"
-            className="form-control"
-            id="Tax"
-            value={form.Tax}
-            onChange={(e) => updateForm({ Tax: e.target.value })}
-          />
+        <div class="flex-containerCalcs">
+          <div class="flex-itemsCalcs">
+                    <text>Tax: </text>
+          </div>
+          <div class="flex-itemsCalcs"><br></br>
+            <text>Approx. Profit (incl. Tax): </text>
+          </div>
+          <div class="flex-itemsCalcs"><br></br>
+            <text>Total Profit: </text>
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="Profit">Profit</label>
-          <input
-            type="number"
-            className="form-control"
-            id="Profit"
-            value={form.Profit}
-            onChange={(e) => updateForm({ Profit: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
+        <div className="form-group"><br></br>
           <input
             type="submit"
             value="Log flip"

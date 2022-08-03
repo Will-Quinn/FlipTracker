@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import './assets/styles.css';
 
 const Record = (props) => (
   <tr>
@@ -8,6 +9,7 @@ const Record = (props) => (
     <td>{props.record.Quantity}</td>
     <td>{props.record.SellPrice}</td>
     <td>{props.record.Tax}</td>
+    <td>{props.record.IncleTax}</td>
     <td>{props.record.Profit}</td>
     <td>
       <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
@@ -71,7 +73,7 @@ export default function RecordList() {
   // This following section will display the table with the records of individuals.
   return (
     <div>
-      <h3>Flip Log</h3>
+      <h3>Flip Log</h3><br></br>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -80,7 +82,9 @@ export default function RecordList() {
             <th>Quantity</th>
             <th>Sell Price</th>
             <th>Tax</th>
-            <th>Profit</th>
+            <th>Approx. Profit (incl. Tax)</th>
+            <th>Total Profit</th>
+            <th>ㅤㅤActions</th>
           </tr>
         </thead>
         <tbody>{recordList()}</tbody>
