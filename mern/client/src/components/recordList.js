@@ -5,12 +5,12 @@ import './assets/styles.css';
 const Record = (props) => (
   <tr>
     <td>{props.record.ItemName}</td>
-    <td>{props.record.BuyPrice}</td>
-    <td>{props.record.Quantity}</td>
-    <td>{props.record.SellPrice}</td>
+    <td>ㅤㅤ{props.record.BuyPrice}</td>
+    <td>ㅤㅤ{props.record.Quantity}</td>
+    <td>ㅤㅤ{props.record.SellPrice}</td>
     <td>{props.record.Tax}</td>
-    <td>{props.record.IncleTax}</td>
-    <td>{props.record.Profit}</td>
+    <td>ㅤㅤㅤㅤㅤㅤㅤ{props.record.IncleTax}</td>
+    <td>ㅤㅤㅤ{props.record.Profit}</td>
     <td>
       <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
       <button className="btn btn-link"
@@ -69,11 +69,22 @@ export default function RecordList() {
       );
     });
   }
+//get props.record.Profit from the database and sums all the profits
+  function sumProfit() {
+    let sum = 0;
+    for (let i = 0; i < records.length; i++) {
+      sum += records[i].Profit;
+    }
+    return sum;
+  }
 
   // This following section will display the table with the records of individuals.
   return (
     <div>
-      <h3>Flip Log</h3><br></br>
+      <div style={{ "clear": "both"}}>
+      <h2 style={{"float": "left"}}>Flip Log</h2>
+      <h3 style={{"float": "right"}}>Total Profits: {sumProfit()}</h3>
+      </div>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -81,10 +92,10 @@ export default function RecordList() {
             <th>Buy Price</th>
             <th>Quantity</th>
             <th>Sell Price</th>
-            <th>Tax</th>
-            <th>Approx. Profit (incl. Tax)</th>
+            <th>ㅤTax</th>
+            <th>Profit (incl. Tax)</th>
             <th>Total Profit</th>
-            <th>ㅤㅤActions</th>
+            <th>ㅤㅤㅤㅤActions</th>
           </tr>
         </thead>
         <tbody>{recordList()}</tbody>
