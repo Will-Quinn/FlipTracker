@@ -90,8 +90,8 @@ export default function Edit() {
   }
   // This following section will display the form that takes input from the user to update the data.
   return (
-    <div>
-      <h3>Update Record</h3>
+    <div style={{"width" : "35%", "margin": "auto"}}>
+      <h3 style={{"margin-left": "20%"}}>Update Record</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="ItemName">Item name: </label>
