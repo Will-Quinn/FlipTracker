@@ -7,10 +7,10 @@ const Record = (props) => (
     <td>{props.record.ItemName}</td>
     <td>ㅤㅤ{props.record.BuyPrice}</td>
     <td>ㅤㅤ{props.record.Quantity}</td>
-    <td>ㅤㅤ{props.record.SellPrice}</td>
-    <td>{props.record.Tax}</td>
+    <td>ㅤㅤㅤ{props.record.SellPrice}</td>
+    <td>ㅤ{props.record.Tax}</td>
     <td>ㅤㅤㅤㅤㅤㅤㅤ{props.record.IncleTax}</td>
-    <td>ㅤㅤㅤ{props.record.Profit}</td>
+    <td>ㅤㅤ{props.record.Profit}</td>
     <td>
       <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
       <button className="btn btn-link"
@@ -69,23 +69,31 @@ export default function RecordList() {
       );
     });
   }
-//get props.record.Profit from the database and sums all the profits
+//get props.record.Profit from the database and sums all the profits, if sum is < 0 id="earnings" style.color="green" else id="losses" style.color="red"
   function sumProfit() {
     let sum = 0;
     for (let i = 0; i < records.length; i++) {
       sum += records[i].Profit;
     }
-    return sum;
+    if (sum === 0) {
+      return <h3 id="even" style={{ color: "gold", margin: "auto", textAlign: "center"}}>{sum + ""}</h3>;
+    } else if (sum > 0) {
+      return <h3 id="earnings" style={{ color: "green", margin: "auto", textAlign: "center"}}>{sum + " ↑"}</h3>;
+    } else {
+        return <h3 id="losses" style={{ color: "red", margin: "auto", textAlign: "center"}}>{sum + " ↓"}</h3>;
+    }
   }
+
+
 
   // This following section will display the table with the records of individuals.
   return (
     <div>
       <div style={{ "clear": "both"}}>
-      <h2 style={{"float": "left"}}>Flip Log</h2>
-      <h3 style={{"float": "right"}}>Total Profits: {sumProfit()}</h3>
+      <h2 style={{"float": "left", marginTop: "1.5%",marginLeft: "5%"  }}>Flip Log</h2>
+      <h3 id="earnings" style={{"float": "right", marginBottom: "2%", marginTop: "1%",marginRight: "5%"    }}>Total Earnings: {sumProfit()}</h3>
       </div>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+      <table className="table table-striped" style={{marginLeft: "-1%", width: "103%"}}>
         <thead>
           <tr>
             <th>Item Name</th>
