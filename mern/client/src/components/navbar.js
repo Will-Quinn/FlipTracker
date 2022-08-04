@@ -14,11 +14,11 @@ export default function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-        <img style={{"width" : 8 + '%', "left" : "0"}} src={pillarLeft}></img>
+        <img alt="left pillar" style={{"width" : 8 + '%', "left" : "0"}} src={pillarLeft}></img>
         <div class="flex-container" style={{"margin" : "auto"}}>
           <div class="flex-items">
         <NavLink to="/" >
-        <img style={{"width" : 17 + '%', "margin-left" : "41.5%"}} src={logo}></img>
+        <img alt="logo"style={{"width" : 17 + '%', "margin-left" : "41.5%"}} src={logo}></img>
         </NavLink>
           </div>
           <div class="flex-items">
@@ -27,7 +27,7 @@ export default function Navbar() {
           </a>             
           </div>
         </div>          
-        <img style={{"width" : 8 + '%', "right" : "0"}} src={pillarRight}></img>
+        <img alt="right pillar" style={{"width" : 8 + '%', "right" : "0"}} src={pillarRight}></img>
       </nav>
     </div>
   );
