@@ -86,6 +86,7 @@ export default function Create() {
             className="form-control BuyPrice"
             id="BuyPrice"
             value={form.BuyPrice}
+            onKeyUp={Calc}
             onChange={(e) => updateForm({ BuyPrice: e.target.value })}
           />
         </div>
@@ -96,6 +97,7 @@ export default function Create() {
             className="form-control Quantity"
             id="Quantity"
             value={form.Quantity}
+            onKeyUp={Calc}
             onChange={(e) => updateForm({ Quantity: e.target.value })}
           />
         </div>

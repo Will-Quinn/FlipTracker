@@ -55,6 +55,7 @@ export default function Edit() {
     Quantity: form.Quantity,
     SellPrice: form.SellPrice,
     Tax: form.Tax,
+    IncleTax: form.IncleTax,
     Profit: form.Profit,
     };
 
@@ -69,7 +70,24 @@ export default function Edit() {
 
     navigate("/");
   }
+  function Calc() {
 
+    var tax = document.getElementById("Tax");
+    var taxRounded = Math.round(form.SellPrice * 0.01);
+    tax.innerHTML = "Tax: -" + taxRounded;
+    form.Tax ="-" +  Math.round(form.SellPrice * 0.01);
+
+    var pwTax = document.getElementById("IncleTax");
+    var pwTaxRounded = Math.round(form.SellPrice - form.BuyPrice + parseInt(form.Tax));
+    form.IncleTax = Math.round(form.SellPrice - form.BuyPrice + parseInt(form.Tax));
+    pwTax.innerHTML = "Profit (incl. Tax): " + pwTaxRounded;
+
+    var profit = document.getElementById("Profit");
+    var profitRounded = Math.round(pwTaxRounded * form.Quantity);
+    profit.innerHTML = "Total Profit: " + profitRounded;
+    form.Profit = profitRounded;
+
+  }
   // This following section will display the form that takes input from the user to update the data.
   return (
     <div>
@@ -92,6 +110,7 @@ export default function Edit() {
             className="form-control"
             id="BuyPrice"
             value={form.BuyPrice}
+            onKeyUp={Calc}            
             onChange={(e) => updateForm({ BuyPrice: e.target.value })}
           />
         </div>
@@ -102,6 +121,7 @@ export default function Edit() {
             className="form-control"
             id="Quantity"
             value={form.Quantity}
+            onKeyUp={Calc}
             onChange={(e) => updateForm({ Quantity: e.target.value })}
           />
         </div>
@@ -112,29 +132,21 @@ export default function Edit() {
             className="form-control"
             id="SellPrice"
             value={form.SellPrice}
+            onKeyUp={Calc}
             onChange={(e) => updateForm({ SellPrice: e.target.value })}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="Tax">Tax: </label>
-          <input
-            type="number"
-            className="form-control"
-            id="Tax"
-            value={form.Tax}
-            onChange={(e) => updateForm({ Tax: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="Profit">Profit: </label>
-          <input
-            type="number"
-            className="form-control"
-            id="Profit"
-            value={form.Profit}
-            onChange={(e) => updateForm({ Profit: e.target.value })}
-          />
-        </div>        
+        <div class="flex-containerCalcs">
+          <div class="flex-itemsCalcs">
+            <text id="Tax">Tax: </text>
+          </div>
+          <div class="flex-itemsCalcs"><br></br>
+            <text id="IncleTax">Profit (incl. Tax): </text>
+          </div>
+          <div class="flex-itemsCalcs"><br></br>
+            <text id="Profit">Total Profit: </text>
+          </div>
+        </div>     
         <br />
 
         <div className="form-group">
