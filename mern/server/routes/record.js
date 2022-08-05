@@ -45,6 +45,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
       Quantity: req.body.Quantity,
       SellPrice: req.body.SellPrice,
       Tax: req.body.Tax,
+      IncleTax: req.body.IncleTax,
       Profit: req.body.Profit,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
@@ -64,6 +65,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
       Quantity: req.body.Quantity,
       SellPrice: req.body.SellPrice,
       Tax: req.body.Tax,
+      IncleTax: req.body.IncleTax,
       Profit: req.body.Profit,
     },
   };
