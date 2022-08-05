@@ -1,1 +1,2 @@
-web: npm start
+web: npm start --prefix mern/server
+web: npm start --prefix mern/client
