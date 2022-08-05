@@ -1,2 +1,2 @@
-web:npm start --prefix mern/server
-web:npm start --prefix mern/client
+web:npm start --prefix FlipTracker/mern/server
+web:npm start --prefix FlipTracker/mern/client
